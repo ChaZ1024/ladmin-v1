@@ -20,7 +20,10 @@ class CreateNodeTable extends Migration
         Schema::create('node', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->comment('节点名称');
+            $table->string('etitle')->comment('英文节点名称');
+            $table->string('icon')->default('')->comment('icon图标');
             $table->string('router')->comment('节点路由');
+            $table->tinyInteger('status')->default(1)->comment('是否显示 0为不显示，1为显示');
             $table->integer('pid')->comment('父级节点');
             $table->timestamps();
         });

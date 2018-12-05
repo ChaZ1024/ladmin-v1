@@ -19,6 +19,7 @@ class CreateAdminsTable extends Migration
             $table->string('password',80)->comment('管理员密码');
             $table->string('phone',20)->comment('管理员手机号码');
             $table->string('email',100)->comment('管理员邮箱');
+            $table->tinyInteger('super')->default(0)->comment('是否为超级管理员');
             $table->string('avatar',100)->default('')->comment('管理员头像');
             $table->smallInteger('status')->default(1)->comment('管理员状态　１为正常，０为禁用');
             $table->string('last_ip')->default('')->comment('最后登录ＩＰ');

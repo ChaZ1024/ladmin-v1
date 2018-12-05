@@ -16,11 +16,28 @@ class AdminAuthMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!Session::get('authToken')){
+        if(!Session::get('userInfo')){
             return redirect("/login");
         }
         else{
-            return $next($request);
+
+            $userHasNode=Session::get('userHasNode');
+            if($userHasNode=='all'){
+                return $next($request);
+            }else{
+                $sysNode=Session::get('sysNode');
+                if(in_array('/'.$request->path(),$sysNode)){
+                    if(in_array('/'.$request->path(),$userHasNode)){
+                        return $next($request);
+                    }else{
+                        return redirect("/noauth");
+                    }
+                }else{
+                    return $next($request);
+                }
+
+            }
+
         }
 
     }

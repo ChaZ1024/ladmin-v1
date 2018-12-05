@@ -16,10 +16,10 @@ class CreateSysConfigTable extends Migration
 
         Schema::create('sys_config', function (Blueprint $table) {
             $table->increments('id');
-
             $table->string('title')->comment('配置标题');
             $table->string('key')->comment('配置key');
             $table->string('value')->comment('配置值');
+            $table->string('ctype')->comment('配置项类型  base 基础  custom 自定义 smtp 邮箱');
             $table->string('sort')->default(0)->comment('配置值排序');
             $table->timestamps();
         });
